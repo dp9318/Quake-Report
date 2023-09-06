@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="63dp"
+    android:paddingTop="3dp"
+    >
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:id="@+id/quake_mag"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:background="@drawable/magnitude_circle"
+        android:textColor="@color/white"
+        />
+
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:id="@+id/quake_city"
+        android:paddingStart="3dp"
+        android:textColor="@color/black"
+        android:textAlignment="viewEnd"
+        android:layout_toEndOf="@id/quake_mag"
+        android:background="@color/yellow"
+        />
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="match_parent"
+        android:id="@+id/quake_country"
+        android:paddingEnd="3dp"
+        android:background="@color/yellow"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:layout_toEndOf="@id/quake_city"/>
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/quake_date"
+        android:paddingStart="3dp"
+        android:textColor="@color/black"
+        android:layout_toEndOf="@id/quake_country"/>
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/quake_time"
+        android:paddingStart="3dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/quake_date"
+        android:layout_toEndOf="@id/quake_country"/>
+
+</RelativeLayout>

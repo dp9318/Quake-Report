@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppCustomTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">#FFC630</item>
+        <item name="colorPrimaryDark">#FFD685</item>
+        <item name="colorAccent">#FDF59A</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="colorSecondary">#FFC630</item>
+        <item name="colorSecondaryVariant">#FFD685</item>
+        <item name="colorOnSecondary">@color/light_yelow</item>
+        <item name="android:statusBarColor">@color/yellow</item>
+    </style>
+
+    <style name="AppCustomTheme.Dark" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize dark theme specific attributes -->
+        <item name="colorPrimary">#FFC630</item>
+        <item name="colorPrimaryDark">#FFD685</item>
+        <item name="colorAccent">#FDF59A</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="colorSecondary">#FFC630</item>
+        <item name="colorSecondaryVariant">#FFD685</item>
+        <item name="colorOnSecondary">@color/light_yelow</item>
+        <item name="android:statusBarColor">@color/yellow</item>
+    </style>
+</resources>
