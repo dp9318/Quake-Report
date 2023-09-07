@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_yelow">
+    <TextView
+        android:id="@+id/mag_text"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:text="@string/mag"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@color/very_light_yelow"/>
+    <TextView
+        android:id="@+id/loc_text"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/mag_text"
+        android:text="@string/location"
+        android:background="@color/very_light_yelow"
+        android:textSize="20sp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="@string/date"
+        android:background="@color/very_light_yelow"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/loc_text"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/magnitude5"
+        android:layout_below="@id/mag_text"/>
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView
     android:id="@+id/list"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_yelow"
+
     android:divider="@null"
     android:dividerHeight="0dp"
+    android:layout_below="@id/bar"
     />
-
+</RelativeLayout>

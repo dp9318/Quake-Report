@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_yelow">#FFEEAB</color>
+    <color name="very_light_yelow">#FFF3C3</color>
     <color name="yellow">#FFCD69</color>
     <!-- Color for an earthquake with magnitude 0 and 2 -->
     <color name="magnitude1">#4A7BA7</color>

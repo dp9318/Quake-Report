@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppCustomTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppCustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#FFC630</item>
         <item name="colorPrimaryDark">#FFD685</item>
         <item name="colorAccent">#FDF59A</item>
@@ -12,7 +12,7 @@
         <item name="android:statusBarColor">@color/yellow</item>
     </style>
 
-    <style name="AppCustomTheme.Dark" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppCustomTheme.Dark" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize dark theme specific attributes -->
         <item name="colorPrimary">#FFC630</item>
         <item name="colorPrimaryDark">#FFD685</item>

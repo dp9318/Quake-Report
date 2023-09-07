@@ -1,6 +1,7 @@
 package com.example.quakereport;
 
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -16,37 +17,38 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
+
+import kotlin.text.UStringsKt;
 
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
 public class QueryUtils {
-    private final String quakeUrl;
 
-    public QueryUtils(String quakeUrl) {
-        this.quakeUrl = quakeUrl;
-    }
-    ArrayList<Earthquake> earthquakes =  new ArrayList<>();
-
-
-
-    protected void backgroundTask(){
+    public static List<Earthquake> backgroundTask(String quakeUrl){
         URL url = createUrl(quakeUrl);
-        if (url == null) {
-            return; // Handle the error gracefully
-        }
-
         String jsonResponse = "";
         try {
             jsonResponse = httpRequest(url);
         } catch (IOException e) {
             Log.e("QueryUtils", "Error making HTTP request", e);
         }
-
-        extractEarthquakes(jsonResponse);
+        List<Earthquake> earthquakes = extractEarthquakes(jsonResponse);
+        return earthquakes;
     }
 
+    private static URL createUrl(String Url_str) {
+        URL url = null;
+        try {
+            url = new URL(Url_str);
 
+        } catch (MalformedURLException exception) {
+            Log.v( "Error with creating URL", String.valueOf(exception));
+        }
+
+        return url;
+    }
 
     private static String httpRequest(URL url) throws IOException {
         String quake_JSON_Response = "";
@@ -62,9 +64,12 @@ public class QueryUtils {
             urlConnection.setConnectTimeout(8000);
             urlConnection.setReadTimeout(5000);
             urlConnection.connect();
-            inputStream=urlConnection.getInputStream();
-            quake_JSON_Response = readFromStream(inputStream);
-
+            if (urlConnection.getResponseCode() == 200) {
+                inputStream = urlConnection.getInputStream();
+                quake_JSON_Response = readFromStream(inputStream);
+            } else {
+                Log.e("LOG_TAG", "Error response code: " + urlConnection.getResponseCode());
+            }
         } catch (IOException e) {
             Log.v("TAGGY","error in http request"+ e);
         } finally {
@@ -79,21 +84,6 @@ public class QueryUtils {
         return quake_JSON_Response;
     }
 
-
-
-    private URL createUrl(String Url_str) {
-        URL url;
-        try {
-            url = new URL(Url_str);
-
-        } catch (MalformedURLException exception) {
-            Log.v( "Error with creating URL", String.valueOf(exception));
-            return null;
-        }
-
-        return url;
-    }
-
     private static String readFromStream(InputStream inputStream) throws IOException{
         StringBuilder output = new StringBuilder();
         if(inputStream != null){
@@ -104,45 +94,35 @@ public class QueryUtils {
                 output.append(line);
                 line = reader.readLine();
             }
-            inputStreamReader.close();
-            reader.close();
-
         }
-        inputStream.close();
         return  output.toString();
     }
 
-    public void extractEarthquakes(String SAMPLE_JSON_RESPONSE) {
+    public static List<Earthquake> extractEarthquakes(String QUAKE_JSON_RESPONSE) {
+        if(TextUtils.isEmpty(QUAKE_JSON_RESPONSE)){
+            return null;
+        }
+        List<Earthquake> earthquakes = new ArrayList<>();
         try {
-            JSONObject root = new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONObject root = new JSONObject(QUAKE_JSON_RESPONSE);
 
             JSONArray earthquakeArray = root.getJSONArray("features");
 
 
-
-            if (earthquakeArray.length() > 0) {
-                for (int i = 0; i < earthquakeArray.length(); i++) {
-                    JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
-                    JSONObject properties = currentEarthquake.getJSONObject("properties");
-                    double magnitude = properties.getDouble("mag");
-                    String location = properties.getString("place");
-                    long time = properties.getLong("time");
-                    String url = properties.getString("url");
-                    earthquakes.add(new Earthquake(magnitude, location, time, url));
-                }
+            for (int i = 0; i < earthquakeArray.length(); i++) {
+                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                double magnitude = properties.getDouble("mag");
+                String location = properties.getString("place");
+                long time = properties.getLong("time");
+                String url = properties.getString("url");
+                Earthquake earthquake = new Earthquake(magnitude, location, time, url);
+                earthquakes.add(earthquake);
             }
 
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
-        finally {
-            if (earthquakes.isEmpty()){
-                Log.v("earth", "list is empty" + earthquakes);
-            }
-
-        }
-    }
-    public ArrayList<Earthquake> getEarthquakes() {
         return earthquakes;
     }
 
