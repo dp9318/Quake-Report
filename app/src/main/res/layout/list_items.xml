@@ -6,7 +6,6 @@
     android:paddingTop="3dp"
     >
 
-
     <TextView
         android:layout_width="150dp"
         android:layout_height="match_parent"
@@ -36,19 +35,21 @@
         android:textColor="@color/black"
         android:layout_toEndOf="@id/quake_city"/>
     <TextView
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/quake_date"
         android:paddingStart="3dp"
+        android:layout_alignParentEnd="true"
         android:textColor="@color/black"
-        android:layout_toEndOf="@id/quake_country"/>
+        />
     <TextView
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/quake_time"
         android:paddingStart="3dp"
         android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
         android:layout_below="@id/quake_date"
-        android:layout_toEndOf="@id/quake_country"/>
+        />
 
 </RelativeLayout>

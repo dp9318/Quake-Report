@@ -8,7 +8,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/img"
-        android:label=""
+        android:label="Quake Report"
         android:supportsRtl="true"
         android:theme="@style/AppCustomTheme.Dark"
         tools:targetApi="31">

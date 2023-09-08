@@ -19,8 +19,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import kotlin.text.UStringsKt;
-
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
