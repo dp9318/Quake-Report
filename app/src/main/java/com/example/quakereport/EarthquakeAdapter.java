@@ -5,6 +5,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -28,6 +30,10 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         if(ListItemView==null){
             ListItemView= LayoutInflater.from(getContext()).inflate(R.layout.list_items,parent,false);
         }
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in); // You can define your animation XML
+
+        ListItemView.startAnimation(animation);
         Earthquake currentNumberset = getItem(position);
 
         TextView quakeMagnitude = ListItemView.findViewById(R.id.quake_mag);
