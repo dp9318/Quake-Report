@@ -6,7 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,30 +18,44 @@ import java.util.List;
 
 
 public class EarthquakeActivity extends AppCompatActivity {
-
 List<Earthquake> earthquakes = new ArrayList<>();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
     EarthquakeAdapter madapter;
 
-
-
-    private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=25";
+    private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=4.5&limit=30";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
-
         Thread backgroundThread = new Thread(() -> {
             try {
+
+                runOnUiThread(() -> {
+                    ProgressBar progressBarMain = findViewById(R.id.progress_bar_main);
+                    progressBarMain.setVisibility(View.VISIBLE);
+                    TextView loadingText = findViewById(R.id.loading_text);
+                    loadingText.setVisibility(View.VISIBLE);
+                });
+
                 List<Earthquake> Earthquakes = QueryUtils.backgroundTask(USGS_REQUEST_URL); // Fetch data
-                earthquakes.clear(); // Clear the existing data
-                // Add the new data to the list
+
+                runOnUiThread(() ->{
+
+                });
                 earthquakes.addAll(Earthquakes);
+
                 // Use the handler to update the UI on the main thread
                 handler.post(() -> {
+                    ProgressBar progressBarMain = findViewById(R.id.progress_bar_main);
+                    progressBarMain.setVisibility(View.GONE);
+                    TextView loadingText = findViewById(R.id.loading_text);
+                    loadingText.setVisibility(View.GONE);
+                    // Set empty state text if there are no earthquakes
+
+
                     madapter.clear(); // Clear the adapter
                     madapter.addAll(earthquakes); // Add the new data to the adapter
                 });
@@ -59,8 +76,11 @@ List<Earthquake> earthquakes = new ArrayList<>();
             Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
             startActivity(websiteIntent);
         });
-
-
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        madapter.clear();
     }
 
 }

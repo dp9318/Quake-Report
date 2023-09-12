@@ -9,7 +9,7 @@
         <item name="colorSecondary">#FFC630</item>
         <item name="colorSecondaryVariant">#FFD685</item>
         <item name="colorOnSecondary">@color/light_yelow</item>
-        <item name="android:statusBarColor">@color/yellow</item>
+        <item name="android:statusBarColor">@color/yellow_light_shade</item>
     </style>
 
     <style name="AppCustomTheme.Dark" parent="Theme.AppCompat.Light.NoActionBar">
@@ -22,6 +22,7 @@
         <item name="colorSecondary">#FFC630</item>
         <item name="colorSecondaryVariant">#FFD685</item>
         <item name="colorOnSecondary">@color/light_yelow</item>
-        <item name="android:statusBarColor">@color/yellow</item>
+        <item name="android:statusBarColor">@color/yellow_light_shade</item>
     </style>
+
 </resources>

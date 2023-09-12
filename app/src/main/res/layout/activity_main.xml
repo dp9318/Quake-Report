@@ -6,46 +6,96 @@
     android:layout_height="match_parent"
     android:background="@color/light_yelow">
     <TextView
-        android:id="@+id/mag_text"
-        android:layout_width="60dp"
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@color/magnitude5"
+        android:layout_alignParentTop="true"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/header"
         android:layout_height="40dp"
-        android:text="@string/mag"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:background="@color/very_light_yelow"/>
-    <TextView
-        android:id="@+id/loc_text"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_toEndOf="@id/mag_text"
-        android:text="@string/location"
-        android:background="@color/very_light_yelow"
-        android:textSize="20sp"
-        android:gravity="center"/>
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:text="@string/date"
-        android:background="@color/very_light_yelow"
-        android:textSize="20sp"
-        android:layout_toEndOf="@id/loc_text"
-        android:gravity="center"/>
+        android:orientation="horizontal"
+        android:layout_below="@id/top_bar"
+        >
+
+        <TextView
+            android:id="@+id/mag_text"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="@string/mag"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:background="@color/yellow"/>
+
+        <TextView
+            android:id="@+id/loc_text"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="103dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:text="@string/location"
+            android:background="@color/yellow"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_toEndOf="@id/mag_text"
+             android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="100dp"
+            android:background="@color/yellow"
+            android:layout_height="match_parent"
+            android:text="@string/date"
+            android:paddingStart="8dp"
+            android:paddingEnd="15dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+
+
     <TextView
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="3dp"
+        android:layout_marginTop="3dp"
         android:background="@color/magnitude5"
-        android:layout_below="@id/mag_text"/>
+        android:layout_below="@id/header"/>
 
-<ListView
-    android:id="@+id/list"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    <ListView
+        android:id="@+id/list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-    android:divider="@null"
-    android:dividerHeight="0dp"
-    android:layout_below="@id/bar"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_below="@id/bar"
     />
+    <ProgressBar
+        android:id="@+id/progress_bar_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:layout_centerInParent="true"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/loading"
+        android:visibility="gone"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/progress_bar_main"/>
 </RelativeLayout>
