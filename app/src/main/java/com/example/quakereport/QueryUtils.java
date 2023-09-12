@@ -32,8 +32,7 @@ public class QueryUtils {
         } catch (IOException e) {
             Log.e("QueryUtils", "Error making HTTP request", e);
         }
-        List<Earthquake> earthquakes = extractEarthquakes(jsonResponse);
-        return earthquakes;
+        return extractEarthquakes(jsonResponse);
     }
 
     private static URL createUrl(String Url_str) {

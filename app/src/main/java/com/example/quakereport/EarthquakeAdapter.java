@@ -13,10 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     public EarthquakeAdapter(Activity context, ArrayList<Earthquake> data_sets ){
@@ -48,8 +49,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         magnitudeCircle.setColor(magnitudeColor);
 
 
-        String offsetLocation = "";
-        String primaryLocation ="";
+        String offsetLocation;
+        String primaryLocation;
         final String separator = " of ";
         String Location = currentNumberset.getPlace();
         String[] parts = Location.split(separator);
@@ -87,12 +88,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return magnitudeFormat.format(Magnitude);
     }
     private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
         return dateFormat.format(dateObject);
     }
 
     private String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault());
         return timeFormat.format(dateObject);
     }
 
