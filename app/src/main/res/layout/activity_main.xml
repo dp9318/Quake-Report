@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/mag_text"
-            android:layout_width="60dp"
+            android:layout_width="57dp"
             android:layout_height="40dp"
             android:text="@string/mag"
             android:textAlignment="center"
