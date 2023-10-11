@@ -2,6 +2,8 @@ package com.example.quakereport;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +31,9 @@ List<Earthquake> earthquakes = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
+        NetworkInfo currentNetwork = connectivityManager.getActiveNetworkInfo();
+        
 
         Thread backgroundThread = new Thread(() -> {
             try {

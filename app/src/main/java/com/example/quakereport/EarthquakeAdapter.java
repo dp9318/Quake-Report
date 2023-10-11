@@ -54,14 +54,15 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         final String separator = " of ";
         String Location = currentNumberset.getPlace();
         String[] parts = Location.split(separator);
-        if(Location.contains(separator)){
-            offsetLocation = parts[0]+separator;
+
+        if (parts.length >= 2) {
+            offsetLocation = parts[0] + separator;
             primaryLocation = parts[1];
+        } else {
+            offsetLocation = getContext().getString(R.string.near_the);
+            primaryLocation = Location;
         }
-        else{
-            offsetLocation=getContext().getString(R.string.near_the);
-            primaryLocation=Location;
-        }
+
 
         TextView quakePrimaryLocationView = ListItemView.findViewById(R.id.quake_country);
         quakePrimaryLocationView.setText(primaryLocation);
